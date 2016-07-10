@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v4.3.3                      
 ******************************************************************************
->> Linked Sun Jul 10 18:30:12 2016
+>> Linked Sun Jul 10 22:53:46 2016
 
 OUTPUT FILE NAME:   <CPP-Library.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 00004400
@@ -19,7 +19,7 @@ MEMORY CONFIGURATION
   INFOB                 00001900   00000080  00000000  00000080  RWIX
   INFOA                 00001980   00000080  00000000  00000080  RWIX
   USBRAM                00001c00   00000800  00000000  00000800  RWIX
-  RAM                   00002400   00002000  000001bc  00001e44  RWIX
+  RAM                   00002400   00002000  0000025c  00001da4  RWIX
   FLASH                 00004400   0000bb80  00000066  0000bb1a  RWIX
   INT00                 0000ff80   00000002  00000000  00000002  RWIX
   INT01                 0000ff82   00000002  00000000  00000002  RWIX
@@ -85,7 +85,7 @@ MEMORY CONFIGURATION
   INT61                 0000fffa   00000002  00000002  00000000  RWIX
   INT62                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FLASH2                00010000   00014400  00000732  00013cce  RWIX
+  FLASH2                00010000   00014400  00000790  00013c70  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -96,28 +96,28 @@ section   page    origin      length       input sections
 .init_array 
 *          0    00004400    00000000     UNINITIALIZED
 
-.sysmem    0    00002400    000000a0     UNINITIALIZED
+.sysmem    0    00002400    00000140     UNINITIALIZED
                   00002400    00000006     rts430x_lc_rd_eabi.lib : memory.obj (.sysmem)
-                  00002406    0000009a     --HOLE--
+                  00002406    0000013a     --HOLE--
 
-.data      0    000024a0    00000072     UNINITIALIZED
-                  000024a0    00000024     main.obj (.data:_ZN4GPIO1pE)
-                  000024c4    00000020     main.obj (.data:_ZN9Interrupt2f1E)
-                  000024e4    00000020     main.obj (.data:_ZN9Interrupt2f2E)
-                  00002504    00000008     rts430x_lc_rd_eabi.lib : _lock.obj (.data)
-                  0000250c    00000004                            : vars.obj (.data)
-                  00002510    00000002                            : memory.obj (.data)
+.data      0    00002540    00000072     UNINITIALIZED
+                  00002540    00000024     main.obj (.data:_ZN4GPIO1pE)
+                  00002564    00000020     main.obj (.data:_ZN9Interrupt2f1E)
+                  00002584    00000020     main.obj (.data:_ZN9Interrupt2f2E)
+                  000025a4    00000008     rts430x_lc_rd_eabi.lib : _lock.obj (.data)
+                  000025ac    00000004                            : vars.obj (.data)
+                  000025b0    00000002                            : memory.obj (.data)
 
 .TI.persistent 
-*          0    000024a0    00000000     UNINITIALIZED
+*          0    00002540    00000000     UNINITIALIZED
 
-.bss       0    00002512    0000000a     UNINITIALIZED
-                  00002512    00000004     (.common:sys_base)
-                  00002516    00000004     (.common:sys_free)
-                  0000251a    00000002     (.common:memsize)
+.bss       0    000025b2    0000000a     UNINITIALIZED
+                  000025b2    00000004     (.common:sys_base)
+                  000025b6    00000004     (.common:sys_free)
+                  000025ba    00000002     (.common:memsize)
 
 .TI.noinit 
-*          0    00002512    00000000     UNINITIALIZED
+*          0    000025b2    00000000     UNINITIALIZED
 
 .stack     0    00004360    000000a0     UNINITIALIZED
                   00004360    00000004     rts430x_lc_rd_eabi.lib : boot.obj (.stack)
@@ -213,37 +213,37 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.obj (.reset)
 
-.text      0    00010000    00000732     
+.text      0    00010000    00000790     
                   00010000    000002ea     main.obj (.text:_ZN4GPIO5PortsEi)
                   000102ea    000000ba     rts430x_lc_rd_eabi.lib : memory.obj (.text:malloc)
-                  000103a4    00000078     main.obj (.text:_ZN9Interrupt12EnInterruptPEiiiPFviE)
-                  0001041c    0000006e     rts430x_lc_rd_eabi.lib : autoinit.obj (.text:_auto_init_hold_wdt)
-                  0001048a    00000062     main.obj (.text:_ZN4PortC1EPVhS1_S1_S1_S1_S1_S1_S1_S1_)
-                  000104ec    00000062     rts430x_lc_rd_eabi.lib : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
-                  0001054e    00000058     main.obj (.text:main)
-                  000105a6    00000044     main.obj (.text:_ZN9Interrupt11InterruptP1Ev)
-                  000105ea    00000044     main.obj (.text:_ZN9Interrupt11InterruptP2Ev)
-                  0001062e    00000042     rts430x_lc_rd_eabi.lib : memory.obj (.text:minit)
-                  00010670    00000034                            : new_.obj (.text:_Znwj)
-                  000106a4    00000024                            : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
-                  000106c8    00000018     main.obj (.text:_Z4Int1i)
-                  000106e0    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
-                  000106f4    00000012                            : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
-                  00010706    0000000a                            : asr16.obj (.text)
-                  00010710    0000000a                            : lsl16.obj (.text)
-                  0001071a    00000006                            : isr_trap.obj (.text:__TI_ISR_TRAP)
-                  00010720    00000006                            : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
-                  00010726    00000004                            : pre_init.obj (.text:_system_pre_init)
-                  0001072a    00000004                            : exit.obj (.text:abort)
-                  0001072e    00000002                            : newhandler.obj (.text:_Z21__default_new_handlerv)
-                  00010730    00000002                            : _lock.obj (.text:_nop)
+                  000103a4    0000008a     main.obj (.text:main)
+                  0001042e    00000078     main.obj (.text:_ZN9Interrupt12EnInterruptPEiiiPFviE)
+                  000104a6    0000006e     rts430x_lc_rd_eabi.lib : autoinit.obj (.text:_auto_init_hold_wdt)
+                  00010514    00000062     main.obj (.text:_ZN4PortC1EPVhS1_S1_S1_S1_S1_S1_S1_S1_)
+                  00010576    00000062     rts430x_lc_rd_eabi.lib : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
+                  000105d8    0000005a     main.obj (.text:_ZN9Interrupt11InterruptP1Ev)
+                  00010632    0000005a     main.obj (.text:_ZN9Interrupt11InterruptP2Ev)
+                  0001068c    00000042     rts430x_lc_rd_eabi.lib : memory.obj (.text:minit)
+                  000106ce    00000034                            : new_.obj (.text:_Znwj)
+                  00010702    00000024                            : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  00010726    00000018     main.obj (.text:_Z4Int1i)
+                  0001073e    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
+                  00010752    00000012                            : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  00010764    0000000a                            : asr16.obj (.text)
+                  0001076e    0000000a                            : lsl16.obj (.text)
+                  00010778    00000006                            : isr_trap.obj (.text:__TI_ISR_TRAP)
+                  0001077e    00000006                            : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+                  00010784    00000004                            : pre_init.obj (.text:_system_pre_init)
+                  00010788    00000004                            : exit.obj (.text:abort)
+                  0001078c    00000002                            : newhandler.obj (.text:_Z21__default_new_handlerv)
+                  0001078e    00000002                            : _lock.obj (.text:_nop)
 
 
 LINKER GENERATED COPY TABLES
 
 __TI_cinit_table @ 00004456 records: 2, size/record: 8, table size: 16
-	.data: load addr=0000442e, load size=00000015 bytes, run addr=000024a0, run size=00000072 bytes, compression=rle
-	.bss: load addr=00004450, load size=00000006 bytes, run addr=00002512, run size=0000000a bytes, compression=zero_init
+	.data: load addr=0000442e, load size=00000015 bytes, run addr=00002540, run size=00000072 bytes, compression=rle
+	.bss: load addr=00004450, load size=00000006 bytes, run addr=000025b2, run size=0000000a bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
@@ -340,7 +340,7 @@ address    name
 00000732   ADC12MEM9
 00000733   ADC12MEM9_H
 00000732   ADC12MEM9_L
-0001072a   C$$EXIT
+00010788   C$$EXIT
 000008c0   CBCTL0
 000008c1   CBCTL0_H
 000008c0   CBCTL0_L
@@ -1001,32 +1001,32 @@ address    name
 0000015c   WDTCTL
 0000015d   WDTCTL_H
 0000015c   WDTCTL_L
-0001072e   _Z21__default_new_handlerv
-000106c8   _Z4Int1i
+0001078c   _Z21__default_new_handlerv
+00010726   _Z4Int1i
 0000441a   _Z5IntP1v
 00004424   _Z5IntP2v
-000024a0   _ZN4GPIO1pE
+00002540   _ZN4GPIO1pE
 00010000   _ZN4GPIO5PortsEi
-0001048a   _ZN4PortC1EPVhS1_S1_S1_S1_S1_S1_S1_S1_
-000105a6   _ZN9Interrupt11InterruptP1Ev
-000105ea   _ZN9Interrupt11InterruptP2Ev
-000103a4   _ZN9Interrupt12EnInterruptPEiiiPFviE
-000024c4   _ZN9Interrupt2f1E
-000024e4   _ZN9Interrupt2f2E
-00010670   _Znwj
+00010514   _ZN4PortC1EPVhS1_S1_S1_S1_S1_S1_S1_S1_
+000105d8   _ZN9Interrupt11InterruptP1Ev
+00010632   _ZN9Interrupt11InterruptP2Ev
+0001042e   _ZN9Interrupt12EnInterruptPEiiiPFviE
+00002564   _ZN9Interrupt2f1E
+00002584   _ZN9Interrupt2f2E
+000106ce   _Znwj
 00004400   __STACK_END
 000000a0   __STACK_SIZE
-000000a0   __SYSMEM_SIZE
+00000140   __SYSMEM_SIZE
 00004456   __TI_CINIT_Base
 00004466   __TI_CINIT_Limit
 00004444   __TI_Handler_Table_Base
 00004450   __TI_Handler_Table_Limit
 UNDEFED    __TI_INITARRAY_Base
 UNDEFED    __TI_INITARRAY_Limit
-0001071a   __TI_ISR_TRAP
+00010778   __TI_ISR_TRAP
 00000001   __TI_args_main
-000106f4   __TI_decompress_none
-00010720   __TI_decompress_rle24
+00010752   __TI_decompress_none
+0001077e   __TI_decompress_rle24
 00000001   __TI_exit
 0000ffd2   __TI_int41
 0000ffd4   __TI_int42
@@ -1050,28 +1050,28 @@ UNDEFED    __TI_INITARRAY_Limit
 0000fff8   __TI_int60
 0000fffa   __TI_int61
 0000fffc   __TI_int62
-000106a4   __TI_zero_init
+00010702   __TI_zero_init
 ffffffff   __binit__
 ffffffff   __c_args__
-00010710   __mspabi_slli
-00010706   __mspabi_srai
-0001041c   _auto_init_hold_wdt
+0001076e   __mspabi_slli
+00010764   __mspabi_srai
+000104a6   _auto_init_hold_wdt
 00004400   _c_int00
 00004400   _c_int00_noexit
-00002504   _lock
-0000250c   _new_handler
-00010730   _nop
+000025a4   _lock
+000025ac   _new_handler
+0001078e   _nop
 0000fffe   _reset_vector
 00004360   _stack
 00002400   _sys_memory
-00010726   _system_pre_init
-00002508   _unlock
-0001072a   abort
+00010784   _system_pre_init
+000025a8   _unlock
+00010788   abort
 ffffffff   binit
-0001054e   main
+000103a4   main
 000102ea   malloc
-000106e0   memcpy
-0001062e   minit
+0001073e   memcpy
+0001068c   minit
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -1081,7 +1081,6 @@ address    name
 00000001   __TI_args_main
 00000001   __TI_exit
 000000a0   __STACK_SIZE
-000000a0   __SYSMEM_SIZE
 00000100   SFRIE1
 00000100   SFRIE1_L
 00000101   SFRIE1_H
@@ -1117,6 +1116,7 @@ address    name
 00000131   PM5CTL0_H
 00000140   FCTL1
 00000140   FCTL1_L
+00000140   __SYSMEM_SIZE
 00000141   FCTL1_H
 00000144   FCTL3
 00000144   FCTL3_L
@@ -1825,12 +1825,12 @@ address    name
 000023fe   USBIEPBCTY_7
 000023ff   USBIEPSIZXY_7
 00002400   _sys_memory
-000024a0   _ZN4GPIO1pE
-000024c4   _ZN9Interrupt2f1E
-000024e4   _ZN9Interrupt2f2E
-00002504   _lock
-00002508   _unlock
-0000250c   _new_handler
+00002540   _ZN4GPIO1pE
+00002564   _ZN9Interrupt2f1E
+00002584   _ZN9Interrupt2f2E
+000025a4   _lock
+000025a8   _unlock
+000025ac   _new_handler
 00004360   _stack
 00004400   __STACK_END
 00004400   _c_int00
@@ -1866,27 +1866,27 @@ address    name
 0000fffe   _reset_vector
 00010000   _ZN4GPIO5PortsEi
 000102ea   malloc
-000103a4   _ZN9Interrupt12EnInterruptPEiiiPFviE
-0001041c   _auto_init_hold_wdt
-0001048a   _ZN4PortC1EPVhS1_S1_S1_S1_S1_S1_S1_S1_
-0001054e   main
-000105a6   _ZN9Interrupt11InterruptP1Ev
-000105ea   _ZN9Interrupt11InterruptP2Ev
-0001062e   minit
-00010670   _Znwj
-000106a4   __TI_zero_init
-000106c8   _Z4Int1i
-000106e0   memcpy
-000106f4   __TI_decompress_none
-00010706   __mspabi_srai
-00010710   __mspabi_slli
-0001071a   __TI_ISR_TRAP
-00010720   __TI_decompress_rle24
-00010726   _system_pre_init
-0001072a   C$$EXIT
-0001072a   abort
-0001072e   _Z21__default_new_handlerv
-00010730   _nop
+000103a4   main
+0001042e   _ZN9Interrupt12EnInterruptPEiiiPFviE
+000104a6   _auto_init_hold_wdt
+00010514   _ZN4PortC1EPVhS1_S1_S1_S1_S1_S1_S1_S1_
+000105d8   _ZN9Interrupt11InterruptP1Ev
+00010632   _ZN9Interrupt11InterruptP2Ev
+0001068c   minit
+000106ce   _Znwj
+00010702   __TI_zero_init
+00010726   _Z4Int1i
+0001073e   memcpy
+00010752   __TI_decompress_none
+00010764   __mspabi_srai
+0001076e   __mspabi_slli
+00010778   __TI_ISR_TRAP
+0001077e   __TI_decompress_rle24
+00010784   _system_pre_init
+00010788   C$$EXIT
+00010788   abort
+0001078c   _Z21__default_new_handlerv
+0001078e   _nop
 ffffffff   __binit__
 ffffffff   __c_args__
 ffffffff   binit

@@ -44,7 +44,11 @@ public:
 	{
 		for(int i = 7; i >= 0; i--)
 		{
-			if(GPIO::Ports(1).IntFlag(i))(*f1[i])(i);
+			if(GPIO::Ports(1).IntFlag(i))
+			{
+				(*f1[i])(i);
+				GPIO::Ports(1).IntFlag(i, 0);
+			}
 		}
 	}
 
@@ -52,7 +56,11 @@ public:
 	{
 		for(int i = 7; i >= 0; i--)
 		{
-			if(GPIO::Ports(2).IntFlag(i))(*f2[i])(i);
+			if(GPIO::Ports(2).IntFlag(i))
+			{
+				(*f2[i])(i);
+				GPIO::Ports(2).IntFlag(i, 0);
+			}
 		}
 	}
 
