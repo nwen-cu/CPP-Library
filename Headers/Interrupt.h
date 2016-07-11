@@ -14,10 +14,10 @@ typedef void (*func)(int);
 
 class Interrupt
 {
-public:
 	static func f1[8];
 	static func f2[8];
 
+public:
 	static void GIntEnabled(int value)
 	{
 		if(value)
@@ -47,7 +47,8 @@ public:
 			if(GPIO::Ports(1).IntFlag(i))
 			{
 				(*f1[i])(i);
-				GPIO::Ports(1).IntFlag(i, 0);
+				GPIO::Ports(1).IntFlagB(0);
+				break;
 			}
 		}
 	}
@@ -59,7 +60,8 @@ public:
 			if(GPIO::Ports(2).IntFlag(i))
 			{
 				(*f2[i])(i);
-				GPIO::Ports(2).IntFlag(i, 0);
+				GPIO::Ports(2).IntFlagB(0);
+				break;
 			}
 		}
 	}
