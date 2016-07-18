@@ -13,10 +13,10 @@ OBJS += \
 ./main.obj 
 
 CPP_DEPS += \
-./main.pp 
+./main.d 
 
 CPP_DEPS__QUOTED += \
-"main.pp" 
+"main.d" 
 
 OBJS__QUOTED += \
 "main.obj" 

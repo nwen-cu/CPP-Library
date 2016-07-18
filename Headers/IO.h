@@ -79,7 +79,7 @@ public:
 
 	void DirectionB(int value)
 	{
-		*Dir = 255 * value;
+		*Dir = 0xFF * value;
 	}
 	int DirectionB()
 	{
@@ -99,7 +99,7 @@ public:
 
 	void DriveSelectB(int value)
 	{
-		*DriSel = 255 * value;
+		*DriSel = 0xFF * value;
 	}
 	int DriveSelectB()
 	{
@@ -119,7 +119,7 @@ public:
 
 	void FuncSelectB(int value)
 	{
-		*FSel = 255 * value;
+		*FSel = 0xFF * value;
 	}
 	int FuncSelectB()
 	{
@@ -139,7 +139,7 @@ public:
 
 	void ResEnabledB(int value)
 	{
-		*REn = 255 * value;
+		*REn = 0xFF * value;
 	}
 	int ResEnabledB()
 	{
@@ -159,7 +159,7 @@ public:
 
 	void IntEnabledB(int value)
 	{
-		*IntEn = 255 * value;
+		*IntEn = 0xFF * value;
 	}
 	int IntEnabledB()
 	{
@@ -179,7 +179,7 @@ public:
 
 	void IntEdgeSelectB(int value)
 	{
-		*IntEdSel = 255 * value;
+		*IntEdSel = 0xFF * value;
 	}
 	int IntEdgeSelectB()
 	{
@@ -199,7 +199,7 @@ public:
 
 	void IntFlagB(int value)
 	{
-		*IntFlg = 255 * value;
+		*IntFlg = 0xFF * value;
 	}
 	int IntFlagB()
 	{
