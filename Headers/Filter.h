@@ -55,10 +55,10 @@ public:
 		{
 			GPIO::Ports(AddrPort).Output(i, (addr & (1 << (i - AddrL))) >> (i - AddrL));
 		}
-		GPIO::Ports(CtrlPort).Output(WRbit, 0);
+		GPIO::Ports(CtrlPort).Output(RWbit, 0);
 		GPIO::Ports(DataPort).Output(D1bit, (data & 2) >> 1);
 		GPIO::Ports(DataPort).Output(D0bit, data & 1);
-		GPIO::Ports(CtrlPort).Output(WRbit, 1);
+		GPIO::Ports(CtrlPort).Output(RWbit, 1);
 
 	}
 

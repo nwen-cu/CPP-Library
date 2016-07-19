@@ -9,7 +9,7 @@
 #include<IO.h>
 #include<Interrupt.h>
 #include<KeyMatrix.h>
-#include<Timer.h>
+//#include<Timer.h>
 #include<LCD.h>
 #include<Filter.h>
 
@@ -27,17 +27,23 @@ void main()
 	//GPIO::Ports(1).ResEnabled(2, 1);
 	//GPIO::Ports(1).Output(2, 0);  87
 	//Interrupt::EnInterruptP(1, 2, 0, KeyMatrix::KeyPress);
-	/*GPIO::Ports(1).Output(0, 0);
+	GPIO::Ports(1).Output(0, 0);
 	GPIO::Ports(3).DriveSelectB(1);
 	GPIO::Ports(4).DriveSelectB(1);
-	LCD::LCD_Init(3, 4, 0, 1, 2, 3);
-	LCD::WriteString(" Hail Omnissiah ", 1, 0);
-	LCD::WriteString(" Hail Omnissiah ", 1, 0);*/
-	for(;;)
+	//for(;;)
+
+		LCD::LCD_Init(3, 4, 0, 1, 2, 3);
+		//LCD::LCD_Test();
+
+	LCD::WriteString("    Adeptus     ", 1, 0);
+	LCD::WriteString("   Mechanicus   ", 2, 0);
+	LCD::WriteString("       is       ", 3, 0);
+	LCD::WriteString("      Ready    ", 4, 0);
+	/*for(;;)
 	{
 		GPIO::Ports(1).Output(0, 1);
 		GPIO::Ports(1).Output(0, 0);
-	}
+	}*/
 	//Interrupt::GIntEnabled(1);
 	//KeyMatrix::KeyMatrix_Init(4, 1, 0, 3, 2, 5);
 	//(*Interrupt::f1[2])(0);

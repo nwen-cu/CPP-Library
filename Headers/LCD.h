@@ -9,7 +9,7 @@
 #define LCD_H_
 
 #include<IO.h>
-#include<Timer.h>
+//#include<Timer.h>
 
 class LCD
 {
@@ -144,42 +144,51 @@ public:
 		RSTbit = RST;
 
 		GPIO::Ports(CPort).Direction(RSbit, 1);
+		GPIO::Ports(CPort).ResEnabled(RSbit, 1);
 		GPIO::Ports(CPort).Direction(RWbit, 1);
+		GPIO::Ports(CPort).ResEnabled(RWbit, 1);
 		GPIO::Ports(CPort).Direction(Ebit, 1);
+		GPIO::Ports(CPort).ResEnabled(Ebit, 1);
 		GPIO::Ports(CPort).Direction(RSTbit, 1);
+		GPIO::Ports(CPort).ResEnabled(RSTbit, 1);
 
 		GPIO::Ports(DPort).DirectionB(1);
+		GPIO::Ports(DPort).ResEnabledB(1);
+
+		Delay_Nms(500);
+		GPIO::Ports(CPort).Output(RSTbit, 0);
+		Delay_1ms();
 		GPIO::Ports(CPort).Output(RSTbit, 1);
-
-		/*Delay_Nms(500);
+		Delay_Nms(500);
 		WriteCommand(0x30);
-		Delay_1ms();
-		WriteCommand(0x02);
-		Delay_1ms();
-		WriteCommand(0x0C);
-		Delay_1ms();
-		WriteCommand(0x01);
-		Delay_1ms();
-		WriteCommand(0x06);
-		Delay_1ms();
-		WriteCommand(0x80);*/
-		Delay_Nms(15);
-		WriteCommand(0x38, 0);
-		Delay_Nms(5);
-		WriteCommand(0x38, 0);
-		Delay_Nms(5);
-		WriteCommand(0x38, 0);
-		Delay_Nms(5);
-		WriteCommand(0x38);
-		Delay_Nms(5);
+		Delay_Nms(100);
+		WriteCommand(0x30);
+		Delay_Nms(40);
 		WriteCommand(0x08);
-		Delay_Nms(25);
-		WriteCommand(0x01);
-		Delay_Nms(25);
-		WriteCommand(0x06);
-		Delay_Nms(25);
+		Delay_Nms(100);
+		WriteCommand(0x10);
+		Delay_Nms(100);
 		WriteCommand(0x0C);
+		Delay_Nms(100);
+		WriteCommand(0x01);
+		Delay_Nms(10);
+		WriteCommand(0x06);
+		Delay_Nms(100);
 
+	}
+
+	static void LCD_Test()
+	{
+		WriteCommand(0x80, 0);
+		Delay_Nms(100);
+		int i;
+		char adder1[] = "      Adeptus   Mechanicus      ";
+		char *p = adder1;
+		for(i=0;i<32;i++)
+		{
+			WriteData(*p);
+			p++;
+		}
 	}
 
 	static void WriteCommand(int cmd, int busytest = 1)
@@ -190,7 +199,7 @@ public:
 		GPIO::Ports(CPort).Output(RWbit, 0);
 		GPIO::Ports(DPort).OutputB(cmd);
 		GPIO::Ports(CPort).Output(Ebit, 1);
-		_NOP();
+		Delay_1ms();
 		GPIO::Ports(CPort).Output(Ebit, 0);
 	}
 
@@ -202,7 +211,7 @@ public:
 		GPIO::Ports(CPort).Output(RWbit, 0);
 		GPIO::Ports(DPort).OutputB(data);
 		GPIO::Ports(CPort).Output(Ebit, 1);
-		_NOP();
+		Delay_1ms();
 		GPIO::Ports(CPort).Output(Ebit, 0);
 	}
 
@@ -237,8 +246,9 @@ public:
 			pos = 0x98;
 			break;
 		}
-		pos += y - 1;
+		pos += y;
 		WriteCommand(pos);
+		Delay_Nms(100);
 	}
 
 	static void WriteString(char *s, int x = 1, int y = 0)
@@ -246,9 +256,10 @@ public:
 		int i;
 		_delay_cycles(10);
 		SetPosition(x, y);
-		for(i = 0; *(s + i) != '\0'; i++)
+		for(i = 0; i < 16; i++)
 		{
-			WriteData(s[i]);
+			WriteData(*s);
+			s++;
 		}
 	}
 };
