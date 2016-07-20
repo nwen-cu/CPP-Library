@@ -16,11 +16,60 @@ enum RefCLK {XT1CLK, XT2CLK, REFOCLK, VLOCLK, DCOCLK, DCOCLKDIV};
 class Clock
 {
 public:
-	static void DCO_FreqSelect(int mode);
-	static void DCO_RangeSelect(int mode);
+	static void DCO_FreqSelect(int mode)
+	{
+		switch(mode)
+		{
+		case 0:
+			UCSCTL0_H &= 0xE0;
+			break;
+		case 31:
+			UCSCTL0_H |= 0x1F;
+			break;
+		}
+	}
+	static void DCO_RangeSelect(int mode)
+	{
+		switch(mode)
+		{
+		case 0:
+			UCSCTL1_L &= 0x8F;
+			break;
+		case 1:
+			UCSCTL1_L &= 0x9F;
+			UCSCTL1_L |= 0x10;
+			break;
+		case 2:
+			UCSCTL1_L &= 0xAF;
+			UCSCTL1_L |= 0x20;
+			break;
+		case 3:
+			UCSCTL1_L &= 0xBF;
+			UCSCTL1_L |= 0x30;
+			break;
+		case 4:
+			UCSCTL1_L &= 0xCF;
+			UCSCTL1_L |= 0x40;
+			break;
+		case 5:
+			UCSCTL1_L &= 0xDF;
+			UCSCTL1_L |= 0x50;
+			break;
+		case 6:
+			UCSCTL1_L &= 0xEF;
+			UCSCTL1_L |= 0x60;
+			break;
+		case 7:
+			UCSCTL1_L |= 0x70;
+			break;
+		}
+	}
 
-	static void Modulator(int mode);
-	static void DisModulator(int mode);
+	static void Modulator(int mode = 0)
+	{
+		UCSCTL0_L &= 0x07;
+	}
+	static void DisModulator(int disable);
 
 	static void FLL_Div(int division)
 	{

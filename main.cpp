@@ -31,14 +31,20 @@ void main()
 	//GPIO::Ports(1).Output(0, 0);
 	GPIO::Ports(3).DriveSelectB(1);
 	GPIO::Ports(4).DriveSelectB(1);
-	//for(;;)
-
-		LCD::LCD_Init(3, 4, 0, 1, 2, 3);
-		//LCD::LCD_Test();
-
-	//LCD::WriteString("    LCD Test    ", 1, 0);
-	Clock::ACLK_Ref(VLOCLK);
+	LCD::LCD_Init(3, 4, 0, 1, 2, 3);
+	//LCD::LCD_Test();
+	Clock::FLL_Ref(XT2CLK);
+	Clock::FLL_Div(1);
+	Clock::FLL_N(1);
+	Clock::Modulator();
+	Clock::DCO_FreqSelect(0);
+	Clock::DCO_RangeSelect(3);
+	Clock::ACLK_Ref(DCOCLK);
 	GPIO::Ports(1).FuncSelect(0, 1);
+	Filter::Filter_Init(6, 6, 7, 4, 1, 6, 5, 4);
+	Filter::FilterMode(1, 0);
+	Filter::FilterFreq(1, 50000);
+	Filter::FilterQual(1, 90);
 	/*for(;;)
 	{
 		GPIO::Ports(1).Output(0, 1);
