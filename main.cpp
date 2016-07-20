@@ -12,6 +12,7 @@
 //#include<Timer.h>
 #include<LCD.h>
 #include<Filter.h>
+#include<Clock.h>
 
 
 
@@ -27,7 +28,7 @@ void main()
 	//GPIO::Ports(1).ResEnabled(2, 1);
 	//GPIO::Ports(1).Output(2, 0);  87
 	//Interrupt::EnInterruptP(1, 2, 0, KeyMatrix::KeyPress);
-	GPIO::Ports(1).Output(0, 0);
+	//GPIO::Ports(1).Output(0, 0);
 	GPIO::Ports(3).DriveSelectB(1);
 	GPIO::Ports(4).DriveSelectB(1);
 	//for(;;)
@@ -35,10 +36,9 @@ void main()
 		LCD::LCD_Init(3, 4, 0, 1, 2, 3);
 		//LCD::LCD_Test();
 
-	LCD::WriteString("    Adeptus     ", 1, 0);
-	LCD::WriteString("   Mechanicus   ", 2, 0);
-	LCD::WriteString("       is       ", 3, 0);
-	LCD::WriteString("      Ready    ", 4, 0);
+	//LCD::WriteString("    LCD Test    ", 1, 0);
+	Clock::ACLK_Ref(VLOCLK);
+	GPIO::Ports(1).FuncSelect(0, 1);
 	/*for(;;)
 	{
 		GPIO::Ports(1).Output(0, 1);

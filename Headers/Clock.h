@@ -118,9 +118,13 @@ public:
 		switch(clk)
 		{
 		case XT1CLK:
+			GPIO::Ports(5).FuncSelect(4, 1);
+			GPIO::Ports(5).FuncSelect(5, 1);
 			UCSCTL4_H &= 0xF8;
 			break;
 		case XT2CLK:
+			GPIO::Ports(5).FuncSelect(2, 1);
+			GPIO::Ports(5).FuncSelect(3, 1);
 			UCSCTL4_H |= 0x05;
 			UCSCTL4_H &= 0xFD;
 			break;
