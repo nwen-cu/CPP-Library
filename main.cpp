@@ -52,7 +52,6 @@ void main()
 	Timer::TimerA1_Output(10);
 	GPIO::Ports(2).Direction(0, 1);
 	GPIO::Ports(2).FuncSelect(0, 1);
-	LCD::WriteNum(30);
 	/*for(;;)
 	{
 		GPIO::Ports(1).Output(0, 1);
@@ -123,8 +122,9 @@ void KeyMatrix::KeyDefination(int r, int c)
 		LCD::WriteString("     Key SET    ", 4);
 		break;
 	case 33:
+		float a = 31415.6797;
 		LCD::WriteString("   Key ENTER    ", 4);
-		LCD::WriteString(LCD::Bin2Chars(432), 3);
+		LCD::WriteNumTest(-a);
 		break;
 	}
 }

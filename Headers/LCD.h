@@ -263,55 +263,57 @@ public:
 		}
 	}
 
-	static char* Dec2Chars(int num, char tmp[16] = "               ")
-	{
-		int i, b = 0;
-		for(i = 1; i < 10000;i *= 10)
-		{
-			tmp[b] = (num / i) % 10;
-			b++;
-		}
-		return tmp;
-	}
-
-	static char* Bin2Chars(int num, char tmp[16] = "")
-	{
-		int i;
-		for(i = 15; i >= 0; i--)
-		{
-			tmp[i] = ((num & (1 << i)) >> i) + 0x30;
-		}
-		return tmp;
-	}
-
-	static int pow(int x, int y)
-		{
-			int tmp = 1;
-			for(y; y >= 0; y--)
-			{
-				tmp *= x;
-			}
-			return tmp;
-		}
-
 	static void WriteNum(int num, int x = 1,int y = 0)
 	 {
-		 int i = 10;
-		 SetPosition(x, y);
-		 while(i>=1)
-		 {
-			 if((int)(num/pow(10,i-1))!=0)
-			 break;
-			 i--;
-		 }
-		 i = 10;
-		 while(i)
-		 {
-			 WriteCommand(num/(int)(pow(10,i-1))+'0', 0);
-			 num=num%(int)(pow(10,i-1));
-			 i--;
-		 }
+		int i, b = 0;
+		char tmp[] = "                ";
+		for(i = 1; i < 10000;i *= 10)
+		{
+			tmp[15 - b] = (num / i) % 10 + 0x30;
+			b++;
+		}
+		WriteString(tmp, x, y);
 	 }
+
+	static void WriteNumTest(float n, int x = 1,int y = 0)
+	{
+		int dot = 0, b = 15, i = 0, tmp;
+		float num = n;
+		char s[] = "                  ";
+		if(num < 0)
+		{
+			s[0] = '-';
+			i++;
+			num = -num;
+		}
+		while(num >= 1)
+		{
+			num /= 10;
+			dot++;
+		}
+		if(dot == 0)
+		{
+			s[i] = '0';
+			s[i + 1] = '.';
+			i += 2;
+			dot = -1;
+		}
+		for(; i <= b; i++)
+		{
+			tmp = (num *= 10);
+			num -= tmp;
+			s[i] = tmp + 0x30;
+			dot--;
+			if(!dot)
+			{
+				i++;
+				s[i] = '.';
+				b = i + 4;
+
+			}
+		}
+		WriteString(s, x, y);
+	}
 
 
 };
