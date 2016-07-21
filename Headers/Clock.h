@@ -11,7 +11,7 @@
 #include<msp430.h>
 #include<IO.h>
 
-enum RefCLK {XT1CLK, XT2CLK, REFOCLK, VLOCLK, DCOCLK, DCOCLKDIV};
+enum RefCLK {XT1CLK, XT2CLK, REFOCLK, VLOCLK, DCOCLK, DCOCLKDIV, MCLK, SMCLK, ACLK};
 
 class Clock
 {

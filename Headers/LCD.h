@@ -262,6 +262,58 @@ public:
 			s++;
 		}
 	}
+
+	static char* Dec2Chars(int num, char tmp[16] = "               ")
+	{
+		int i, b = 0;
+		for(i = 1; i < 10000;i *= 10)
+		{
+			tmp[b] = (num / i) % 10;
+			b++;
+		}
+		return tmp;
+	}
+
+	static char* Bin2Chars(int num, char tmp[16] = "")
+	{
+		int i;
+		for(i = 15; i >= 0; i--)
+		{
+			tmp[i] = ((num & (1 << i)) >> i) + 0x30;
+		}
+		return tmp;
+	}
+
+	static int pow(int x, int y)
+		{
+			int tmp = 1;
+			for(y; y >= 0; y--)
+			{
+				tmp *= x;
+			}
+			return tmp;
+		}
+
+	static void WriteNum(int num, int x = 1,int y = 0)
+	 {
+		 int i = 10;
+		 SetPosition(x, y);
+		 while(i>=1)
+		 {
+			 if((int)(num/pow(10,i-1))!=0)
+			 break;
+			 i--;
+		 }
+		 i = 10;
+		 while(i)
+		 {
+			 WriteCommand(num/(int)(pow(10,i-1))+'0', 0);
+			 num=num%(int)(pow(10,i-1));
+			 i--;
+		 }
+	 }
+
+
 };
 
 int LCD::DPort = 0;

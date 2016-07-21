@@ -9,7 +9,7 @@
 #include<IO.h>
 #include<Interrupt.h>
 #include<KeyMatrix.h>
-//#include<Timer.h>
+#include<Timer.h>
 #include<LCD.h>
 #include<Filter.h>
 #include<Clock.h>
@@ -22,6 +22,7 @@ void main()
 	void Int1(int);
 	WDTCTL=WDTPW+WDTHOLD;
 	GPIO::Port_Init();
+	char Output[16];
 	//Interrupt::GIntEnabled(0);
 	//GPIO::Ports(1).ResEnabled(0, 1);
 	//GPIO::Ports(1).Output(0, 1);
@@ -33,6 +34,7 @@ void main()
 	GPIO::Ports(4).DriveSelectB(1);
 	LCD::LCD_Init(3, 4, 0, 1, 2, 3);
 	//LCD::LCD_Test();
+	KeyMatrix::KeyMatrix_Init(2, 1, 4, 7, 3, 6);
 	Clock::FLL_Ref(XT2CLK);
 	Clock::FLL_Div(1);
 	Clock::FLL_N(1);
@@ -45,13 +47,19 @@ void main()
 	Filter::FilterMode(1, 0);
 	Filter::FilterFreq(1, 50000);
 	Filter::FilterQual(1, 90);
+	Clock::SMCLK_Ref(XT1CLK);
+	Timer::TimerA1_Init(ACLK);
+	Timer::TimerA1_Output(10);
+	GPIO::Ports(2).Direction(0, 1);
+	GPIO::Ports(2).FuncSelect(0, 1);
+	LCD::WriteNum(30);
 	/*for(;;)
 	{
 		GPIO::Ports(1).Output(0, 1);
 		GPIO::Ports(1).Output(0, 0);
 	}*/
 	//Interrupt::GIntEnabled(1);
-	//KeyMatrix::KeyMatrix_Init(4, 1, 0, 3, 2, 5);
+
 	//(*Interrupt::f1[2])(0);
 	//_BIS_SR(LPM3_bits + GIE);
 	for(;;);
@@ -70,68 +78,53 @@ void KeyMatrix::KeyDefination(int r, int c)
 	switch(r * 10 + c)
 	{
 	case 0:
-		GPIO::Ports(3).Output(2, 1);
-		GPIO::Ports(3).Output(0, 1);
+		LCD::WriteString("     Key 1      ", 1);
 		break;
 	case 1:
-		GPIO::Ports(3).Output(3, 1);
-		GPIO::Ports(3).Output(0, 1);
+		LCD::WriteString("     Key 2      ", 1);
 		break;
 	case 2:
-		GPIO::Ports(3).Output(4, 1);
-		GPIO::Ports(3).Output(0, 1);
+		LCD::WriteString("     Key 3      ", 1);
 		break;
 	case 3:
-		GPIO::Ports(3).Output(5, 1);
-		GPIO::Ports(3).Output(0, 1);
+		LCD::WriteString("     Key F1     ", 1);
 		break;
 	case 10:
-		GPIO::Ports(3).Output(2, 1);
-		GPIO::Ports(3).Output(1, 1);
+		LCD::WriteString("     Key 4      ", 2);
 		break;
 	case 11:
-		GPIO::Ports(3).Output(3, 1);
-		GPIO::Ports(3).Output(1, 1);
+		LCD::WriteString("     Key 5      ", 2);
 		break;
 	case 12:
-		GPIO::Ports(3).Output(4, 1);
-		GPIO::Ports(3).Output(1, 1);
+		LCD::WriteString("     Key 6      ", 2);
 		break;
 	case 13:
-		GPIO::Ports(3).Output(5, 1);
-		GPIO::Ports(3).Output(1, 1);
+		LCD::WriteString("     Key F2     ", 2);
 		break;
 	case 20:
-		GPIO::Ports(3).Output(2, 1);
-		GPIO::Ports(3).Output(6, 1);
+		LCD::WriteString("     Key 7      ", 3);
 		break;
 	case 21:
-		GPIO::Ports(3).Output(3, 1);
-		GPIO::Ports(3).Output(6, 1);
+		LCD::WriteString("     Key 8      ", 3);
 		break;
 	case 22:
-		GPIO::Ports(3).Output(4, 1);
-		GPIO::Ports(3).Output(6, 1);
+		LCD::WriteString("     Key 9      ", 3);
 		break;
 	case 23:
-		GPIO::Ports(3).Output(5, 1);
-		GPIO::Ports(3).Output(6, 1);
+		LCD::WriteString("   Key CLEAR    ", 3);
 		break;
 	case 30:
-		GPIO::Ports(3).Output(2, 1);
-		GPIO::Ports(3).Output(7, 1);
+		LCD::WriteString("     Key 0      ", 4);
 		break;
 	case 31:
-		GPIO::Ports(3).Output(3, 1);
-		GPIO::Ports(3).Output(7, 1);
+		LCD::WriteString("     Key .      ", 4);
 		break;
 	case 32:
-		GPIO::Ports(3).Output(4, 1);
-		GPIO::Ports(3).Output(7, 1);
+		LCD::WriteString("     Key SET    ", 4);
 		break;
 	case 33:
-		GPIO::Ports(3).Output(5, 1);
-		GPIO::Ports(3).Output(7, 1);
+		LCD::WriteString("   Key ENTER    ", 4);
+		LCD::WriteString(LCD::Bin2Chars(432), 3);
 		break;
 	}
 }

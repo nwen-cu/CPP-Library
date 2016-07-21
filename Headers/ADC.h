@@ -13,7 +13,18 @@
 
 class ADC
 {
-	static void ADC_Init();
+	static void ADC_Init(int channel = 0)
+	{
+		ADC12CTL0 = ADC12SHT02 + ADC12REF2_5V + ADC12REFON + ADC12ON;
+		ADC12CTL1 = ADC12SHP;
+		ADC12IE = 1;
+		ADC12CTL0 |= ADC12ENC;
+		P6SEL |= 1;
+		for(;;)
+		{
+			ADC12CTRL0 |= ADC12SC;
+		}
+	}
 	static void EnableADCInt();
 	static void ADCStart();
 
@@ -22,7 +33,11 @@ class ADC
 #pragma vector=ADC12_VECTOR
 __interrupt void ADC_Interrupt()
 {
+	switch(ADC12V)
+	{
+	case 6:
 
+	}
 }
 
 
