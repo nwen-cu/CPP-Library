@@ -275,7 +275,7 @@ public:
 		WriteString(tmp, x, y);
 	 }
 
-	static void WriteNumTest(float n, int x = 1,int y = 0)
+	static void WriteNum(float n, int x = 1,int y = 0)
 	{
 		int dot = 0, b = 15, i = 0, tmp;
 		float num = n;

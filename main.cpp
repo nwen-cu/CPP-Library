@@ -13,6 +13,7 @@
 #include<LCD.h>
 #include<Filter.h>
 #include<Clock.h>
+#include<ADC.h>
 
 
 
@@ -52,6 +53,7 @@ void main()
 	Timer::TimerA1_Output(10);
 	GPIO::Ports(2).Direction(0, 1);
 	GPIO::Ports(2).FuncSelect(0, 1);
+	ADC::ADC_Init();
 	/*for(;;)
 	{
 		GPIO::Ports(1).Output(0, 1);
@@ -124,7 +126,7 @@ void KeyMatrix::KeyDefination(int r, int c)
 	case 33:
 		float a = 31415.6797;
 		LCD::WriteString("   Key ENTER    ", 4);
-		LCD::WriteNumTest(-a);
+		LCD::WriteNum(-a);
 		break;
 	}
 }

@@ -13,6 +13,7 @@ main.obj: C:/ti/workspace_v6_1_3/CPP-Library/Headers/Timer.h
 main.obj: C:/ti/workspace_v6_1_3/CPP-Library/Headers/Clock.h
 main.obj: C:/ti/workspace_v6_1_3/CPP-Library/Headers/LCD.h
 main.obj: C:/ti/workspace_v6_1_3/CPP-Library/Headers/Filter.h
+main.obj: C:/ti/workspace_v6_1_3/CPP-Library/Headers/ADC.h
 
 ../main.cpp: 
 C:/ti/ccsv6/ccs_base/msp430/include/msp430.h: 
@@ -27,3 +28,4 @@ C:/ti/workspace_v6_1_3/CPP-Library/Headers/Timer.h:
 C:/ti/workspace_v6_1_3/CPP-Library/Headers/Clock.h: 
 C:/ti/workspace_v6_1_3/CPP-Library/Headers/LCD.h: 
 C:/ti/workspace_v6_1_3/CPP-Library/Headers/Filter.h: 
+C:/ti/workspace_v6_1_3/CPP-Library/Headers/ADC.h: 
