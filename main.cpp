@@ -41,7 +41,7 @@ void main()
 	Clock::FLL_N(1);
 	Clock::Modulator();
 	Clock::DCO_FreqSelect(0);
-	Clock::DCO_RangeSelect(3);
+	Clock::DCO_RangeSelect(7);
 	Clock::ACLK_Ref(DCOCLK);
 	GPIO::Ports(1).FuncSelect(0, 1);
 	Filter::Filter_Init(6, 6, 7, 4, 1, 6, 5, 4);
@@ -53,7 +53,9 @@ void main()
 	Timer::TimerA1_Output(10);
 	GPIO::Ports(2).Direction(0, 1);
 	GPIO::Ports(2).FuncSelect(0, 1);
-	ADC::ADC_Init();
+	Clock::MCLK_Ref(DCOCLK);
+	ADC::ADC_Init(0);
+
 	/*for(;;)
 	{
 		GPIO::Ports(1).Output(0, 1);
@@ -80,30 +82,37 @@ void KeyMatrix::KeyDefination(int r, int c)
 	{
 	case 0:
 		LCD::WriteString("     Key 1      ", 1);
+		TA1CCTL1 = OUTMOD_1;
 		break;
 	case 1:
 		LCD::WriteString("     Key 2      ", 1);
+		TA1CCTL1 = OUTMOD_2;
 		break;
 	case 2:
 		LCD::WriteString("     Key 3      ", 1);
+		TA1CCTL1 = OUTMOD_3;
 		break;
 	case 3:
 		LCD::WriteString("     Key F1     ", 1);
 		break;
 	case 10:
 		LCD::WriteString("     Key 4      ", 2);
+		TA1CCTL1 = OUTMOD_4;
 		break;
 	case 11:
 		LCD::WriteString("     Key 5      ", 2);
+		TA1CCTL1 = OUTMOD_5;
 		break;
 	case 12:
 		LCD::WriteString("     Key 6      ", 2);
+		TA1CCTL1 = OUTMOD_6;
 		break;
 	case 13:
 		LCD::WriteString("     Key F2     ", 2);
 		break;
 	case 20:
 		LCD::WriteString("     Key 7      ", 3);
+		TA1CCTL1 = OUTMOD_7;
 		break;
 	case 21:
 		LCD::WriteString("     Key 8      ", 3);
