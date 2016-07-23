@@ -19,11 +19,13 @@ public:
 	static void ADC_Init(int channel = 0)
 	{
 		//ADC12CTL0 &= ~ADC12ENC;
-		ADC12CTL0 = ADC12SHT02 + ADC12REF2_5V + ADC12REFON + ADC12ON;
-		ADC12CTL1 = ADC12SHP; //+ ADC12CONSEQ_1;
-		ADC12IE = 1;
+		ADC12CTL0 = ADC12SHT02 + ADC12MSC + ADC12ON;
+		ADC12CTL1 = ADC12SHP+ ADC12CONSEQ_1;
+		ADC12IE = 2;
 		GPIO::Ports(6).FuncSelect(0, 1);
-		//ADC12MCTL0 = ADC12SREF_1;
+		GPIO::Ports(7).FuncSelect(0, 1);
+		ADC12MCTL0 = ADC12INCH_0;
+		ADC12MCTL1 = ADC12INCH_12 + ADC12EOS;
 		ADC12CTL0 |= ADC12ENC;
 		for(;;)
 		{
@@ -44,7 +46,9 @@ public:
 };
 
 float sum = 0;
+float sum1 = 0;
 int count = 0;
+int count1 = 0;
 
 #pragma vector=ADC12_VECTOR
 __interrupt void ADC_Interrupt()
@@ -53,7 +57,7 @@ __interrupt void ADC_Interrupt()
 	switch(ADC12IV)
 	{
 	case 6:
-		sum += ADC12MEM0;
+		/*sum += ADC12MEM0;
 		//tmp /= 819;
 		//tmp += 2.5;
 		count++;
@@ -65,8 +69,32 @@ __interrupt void ADC_Interrupt()
 			sum = 0;
 			count = 0;
 		}
-
+		break;*/
 	case 8:
+		sum += ADC12MEM0;
+		//tmp /= 819;
+		//tmp += 2.5;
+		count++;
+		if(count == 100)
+		{
+			//sum /= 1638.0 * count;
+			sum /= 1256.1348 * count;
+			LCD::WriteNum(sum, 1);
+			sum = 0;
+			count = 0;
+		}
+		sum1 += ADC12MEM1;
+		//tmp /= 819;
+		//tmp += 2.5;
+		count1++;
+		if(count1 == 100)
+		{
+			//sum /= 1638.0 * count;
+			sum1 /= 1256.1348 * count1;
+			LCD::WriteNum(sum1, 2);
+			sum1 = 0;
+			count1 = 0;
+		}
 	case 10:
 	case 12:
 	case 14:
