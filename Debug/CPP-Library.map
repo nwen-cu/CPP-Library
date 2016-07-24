@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v15.12.1                    
 ******************************************************************************
->> Linked Sat Jul 23 18:40:58 2016
+>> Linked Sun Jul 24 11:04:27 2016
 
 OUTPUT FILE NAME:   <CPP-Library.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs_noexit"  address: 0000452c
@@ -287,7 +287,7 @@ MODULE SUMMARY
     +--+--------------------------+-------+---------+---------+
        Total:                     5534    315       156    
                                                            
-    C:\ti\ccsv6\tools\compiler\ti-cgt-msp430_15.12.1.LTS\lib\rts430x_lc_rd_eabi.lib
+    G:\ti\ccsv6\tools\compiler\ti-cgt-msp430_15.12.1.LTS\lib\rts430x_lc_rd_eabi.lib
        frcdivd.obj                1158    0         0      
        frcmpyd.obj                740     0         0      
        mpyd.obj                   642     0         0      
