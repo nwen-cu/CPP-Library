@@ -282,4 +282,16 @@ public:
 };
 Port *GPIO::p[9] = {0};
 
+void Delay_1ms()
+{
+	int i;
+	for(i = 150; i > 0; i--)_NOP();
+}
+
+void Delay_Nms(int n)
+{
+	int i;
+	for(i = n; i > 0; i--)Delay_1ms();
+}
+
 #endif /* IO_H_ */

@@ -272,6 +272,7 @@ public:
 			tmp[15 - b] = (num / i) % 10 + 0x30;
 			b++;
 		}
+		SetPosition(x, y);
 		WriteString(tmp, x, y);
 	 }
 

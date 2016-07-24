@@ -14,7 +14,7 @@
 #include<Filter.h>
 #include<Clock.h>
 #include<ADC.h>
-
+#include<DAC.h>
 
 
 
@@ -44,17 +44,24 @@ void main()
 	Clock::DCO_RangeSelect(7);
 	Clock::ACLK_Ref(DCOCLK);
 	GPIO::Ports(1).FuncSelect(0, 1);
-	Filter::Filter_Init(6, 6, 7, 4, 1, 6, 5, 4);
+	/*Filter::Filter_Init(6, 6, 7, 4, 1, 6, 5, 4);
 	Filter::FilterMode(1, 0);
 	Filter::FilterFreq(1, 50000);
-	Filter::FilterQual(1, 90);
+	Filter::FilterQual(1, 90);*/
 	Clock::SMCLK_Ref(XT1CLK);
 	Timer::TimerA1_Init(ACLK);
 	Timer::TimerA1_Output(10);
 	GPIO::Ports(2).Direction(0, 1);
 	GPIO::Ports(2).FuncSelect(0, 1);
 	Clock::MCLK_Ref(DCOCLK);
-	ADC::ADC_Init(0);
+	DAC::DAC_Init(3, 6, 1, 2, 5);
+	float i;
+	for(;;)
+	{
+		for(i = 0; i <= 5; i += 0.2)
+			DAC::AnlogOutput(i);
+	}
+	//ADC::ADC_Init(0);
 
 	/*for(;;)
 	{
